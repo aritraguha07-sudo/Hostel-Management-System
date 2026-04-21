@@ -1,0 +1,4 @@
+2,Rahul,2023,0,ECE
+5,Aritra,2023,0,CSE
+6,Aditya,2023,201,CSE
+99,Pihu,2023,101,CSE
