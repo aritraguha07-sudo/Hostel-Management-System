@@ -93,7 +93,7 @@ http://localhost:8080/swagger-ui/index.html
 1. Clone the repository
 
 ```
-git clone https://github.com/your-username/hostelweb.git
+git clone https://github.com/aritraguha07-sudo/hostelweb.git
 ```
 
 2. Open in IntelliJ IDEA
@@ -103,7 +103,7 @@ git clone https://github.com/your-username/hostelweb.git
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/hostel_db
 spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
+spring.datasource.password=S1234
 ```
 
 4. Run the application
