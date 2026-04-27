@@ -1,14 +1,14 @@
-# 🏨 Hostel Management System (Spring Boot)
+# 🏨 Hostel Management System (Spring Boot + MySQL)
 
-🚀 A backend system to manage hostel students, rooms, and allocation logic using Spring Boot.
+🚀 A backend system to manage hostel students, rooms, and allocation using Spring Boot, MySQL, and JPA.
 
 ---
 
 ## 📌 Overview
 
-This project simulates a real-world hostel management system where students can be assigned to rooms based on availability and capacity constraints.
+This project simulates a real-world hostel management system where students are allocated to rooms based on availability and capacity.
 
-It demonstrates core backend concepts like REST APIs, layered architecture, and data persistence.
+It demonstrates backend concepts like REST APIs, layered architecture, database integration, and API documentation.
 
 ---
 
@@ -16,9 +16,18 @@ It demonstrates core backend concepts like REST APIs, layered architecture, and 
 
 * Java
 * Spring Boot
+* Spring Data JPA
+* MySQL
 * Maven
-* REST APIs
-* File-based persistence (students.txt, rooms.txt)
+* Swagger (OpenAPI)
+
+---
+
+## 🏗 Architecture
+
+```
+Controller → Service → Repository → Database (MySQL)
+```
 
 ---
 
@@ -26,26 +35,21 @@ It demonstrates core backend concepts like REST APIs, layered architecture, and 
 
 ### 👨‍🎓 Student Management
 
-* Add new students
+* Add student
 * View all students
-* Delete students
+* Delete student
 
 ### 🏠 Room Management
 
-* Add rooms
+* Add room
 * View all rooms
 
 ### 🔄 Allocation System
 
-* Allocate student to a room
-* Prevent over-capacity allocation
+* Allocate student to room
+* Prevent over-capacity
 * Prevent duplicate allocation
-* Vacate student from room
-
-### 💾 Persistence
-
-* Data stored in local files
-* Auto-load data on application startup
+* Vacate student
 
 ---
 
@@ -53,20 +57,34 @@ It demonstrates core backend concepts like REST APIs, layered architecture, and 
 
 ### Student APIs
 
-| Method | Endpoint             | Description              |
-| ------ | -------------------- | ------------------------ |
-| GET    | `/students`          | Get all students         |
-| POST   | `/students`          | Add a new student        |
-| DELETE | `/students/{id}`     | Delete a student         |
-| POST   | `/students/allocate` | Allocate student to room |
-| POST   | `/students/vacate`   | Vacate student from room |
+| Method | Endpoint             | Description      |
+| ------ | -------------------- | ---------------- |
+| GET    | `/students`          | Get all students |
+| POST   | `/students`          | Add student      |
+| DELETE | `/students/{id}`     | Delete student   |
+| POST   | `/students/allocate` | Allocate room    |
+| POST   | `/students/vacate`   | Vacate room      |
 
 ### Room APIs
 
-| Method | Endpoint | Description    |
-| ------ | -------- | -------------- |
-| GET    | `/rooms` | Get all rooms  |
-| POST   | `/rooms` | Add a new room |
+| Method | Endpoint | Description   |
+| ------ | -------- | ------------- |
+| GET    | `/rooms` | Get all rooms |
+| POST   | `/rooms` | Add room      |
+
+---
+
+## 📄 API Documentation (Swagger)
+
+👉 Open in browser:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+* Interactive API testing
+* Request/response preview
+* No need for Postman
 
 ---
 
@@ -74,19 +92,21 @@ It demonstrates core backend concepts like REST APIs, layered architecture, and 
 
 1. Clone the repository
 
-```bash
-git clone https://github.com/aritraguha07-sudo/Hostel-Management-System.git
+```
+git clone https://github.com/your-username/hostelweb.git
 ```
 
 2. Open in IntelliJ IDEA
 
-3. Run:
+3. Configure MySQL in `application.properties`:
 
 ```
-HostelwebApplication.java
+spring.datasource.url=jdbc:mysql://localhost:3306/hostel_db
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD
 ```
 
-4. Use Postman to test APIs
+4. Run the application
 
 ---
 
@@ -95,9 +115,7 @@ HostelwebApplication.java
 ### Add Student
 
 ```json
-POST /students
 {
-  "id": 1,
   "name": "Aritra",
   "admissionYear": 2023,
   "roomNo": 0,
@@ -107,12 +125,23 @@ POST /students
 
 ---
 
-## 🔮 Future Improvements
+## 🔥 Key Concepts Used
 
-* Database integration (MySQL / H2)
-* Authentication system (Login/Register)
-* Frontend UI (React / HTML)
+* REST API design
+* Spring Boot architecture
+* JPA (ORM)
+* Repository pattern
+* MySQL database integration
 * Swagger API documentation
+
+---
+
+## 🚀 Future Improvements
+
+* Authentication (Login/Register)
+* JWT Security
+* Frontend (React)
+* Admin dashboard
 
 ---
 
@@ -122,4 +151,4 @@ POST /students
 
 ---
 
-## ⭐ If you found this useful, give it a star!
+## ⭐ If you like this project, give it a star!
