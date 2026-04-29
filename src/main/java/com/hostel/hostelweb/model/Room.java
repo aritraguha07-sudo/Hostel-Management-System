@@ -1,7 +1,9 @@
 package com.hostel.hostelweb.model;
+import jakarta.persistence.*;
 
+@Entity
 public class Room {
-
+ @Id
     private int roomNo;
     private int capacity;
     private int occupied;

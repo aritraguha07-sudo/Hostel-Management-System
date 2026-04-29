@@ -1,6 +1,11 @@
 package com.hostel.hostelweb.model;
+import jakarta.persistence.*;
+
+@Entity
 
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String name;
@@ -11,8 +16,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String name, int admissionYear, int roomNo, String dept) {
-        this.id = id;
+    public Student(String name, int admissionYear, int roomNo, String dept) {
         this.name = name;
         this.admissionYear = admissionYear;
         this.roomNo = roomNo;

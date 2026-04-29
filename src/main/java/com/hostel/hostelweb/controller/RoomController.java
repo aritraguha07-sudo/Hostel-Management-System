@@ -13,21 +13,23 @@ public class RoomController {
 
     private final HostelService hostelService;
 
-    public RoomController(HostelService hostelService){
+    public RoomController(HostelService hostelService) {
         this.hostelService = hostelService;
     }
+
     @GetMapping
     public ResponseEntity<List<Room>> getRooms() {
         List<Room> Rooms = hostelService.getAllRooms();
         return ResponseEntity.ok(Rooms);
     }
+
     @PostMapping
     public ResponseEntity<String> addRoom(@RequestBody Room room) {
-        boolean success = hostelService.addRoom(room);
-        if(!success) {
-            return ResponseEntity.badRequest().body("Room already exists");
-        }else {
+        try {
+            Room savedRoom = hostelService.addRoom(room);
             return ResponseEntity.status(201).body("Room added successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
