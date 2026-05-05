@@ -60,7 +60,7 @@ resources/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/aritraguha07/hostel-management-system.git
+git clone https://github.com/aritraguha07-sudo/Hostel-Management-System.git
 ```
 
 ### 2. Configure database
