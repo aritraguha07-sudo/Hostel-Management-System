@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rooms</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>HostelMS</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="students.html">Students</a>
+        <a href="rooms.html" class="active">Rooms</a>
+        <a href="allocate.html">Allocate</a>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <h1>Rooms</h1>
+        <p>Manage hostel rooms</p>
+
+        <!-- Add Room -->
+        <div class="card">
+            <h3>Add Room</h3>
+
+            <input id="roomNo" placeholder="Room No">
+            <input id="capacity" placeholder="Capacity">
+
+            <button onclick="addRoom()">Add Room</button>
+        </div>
+
+        <!-- Room List -->
+        <div class="card">
+            <h3>Room List</h3>
+            <div id="roomList" class="grid"></div>
+        </div>
+
+    </main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

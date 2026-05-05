@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Allocate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>HostelMS</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="students.html">Students</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="allocate.html" class="active">Allocate</a>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <h1>Allocate Student</h1>
+        <p>Assign room to student</p>
+
+        <div class="card">
+
+            <input id="studentId" placeholder="Student ID">
+            <input id="roomNo" placeholder="Room No">
+
+            <button onclick="allocateStudent()">Allocate</button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
