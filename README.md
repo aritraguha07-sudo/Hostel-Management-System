@@ -60,7 +60,7 @@ resources/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/hostel-management-system.git
+git clone https://github.com/aritraguha07/hostel-management-system.git
 ```
 
 ### 2. Configure database
@@ -70,7 +70,7 @@ Update `application.properties`:
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/hostel_db
 spring.datasource.username=root
-spring.datasource.password=your_password
+spring.datasource.password=S1234
 ```
 
 ### 3. Run the project
