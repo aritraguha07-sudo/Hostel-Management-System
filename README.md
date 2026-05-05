@@ -1,154 +1,106 @@
-# 🏨 Hostel Management System (Spring Boot + MySQL)
+# 🏠 Hostel Management System
 
-🚀 A backend system to manage hostel students, rooms, and allocation using Spring Boot, MySQL, and JPA.
+A full-stack web application to manage hostel operations including student records, room management, and room allocation.
 
 ---
 
-## 📌 Overview
+## 🚀 Features
 
-This project simulates a real-world hostel management system where students are allocated to rooms based on availability and capacity.
-
-It demonstrates backend concepts like REST APIs, layered architecture, database integration, and API documentation.
+* Add, view, and delete students
+* Add and manage hostel rooms
+* Allocate students to rooms based on capacity
+* Dynamic dashboard UI for easy interaction
+* REST API-based backend
 
 ---
 
 ## 🛠 Tech Stack
 
+**Backend**
+
 * Java
 * Spring Boot
 * Spring Data JPA
+* REST APIs
+
+**Database**
+
 * MySQL
-* Maven
-* Swagger (OpenAPI)
+
+**Frontend**
+
+* HTML
+* CSS
+* JavaScript
+
+**Tools**
+
+* Git & GitHub
+* Swagger (API testing)
+* IntelliJ IDEA
 
 ---
 
-## 🏗 Architecture
+## 📂 Project Structure
 
-```
-Controller → Service → Repository → Database (MySQL)
+```text
+src/
+ ├── controller/
+ ├── service/
+ ├── repository/
+ ├── model/
+resources/
+ ├── static/
 ```
 
 ---
 
-## ✨ Features
+## ⚙️ Setup Instructions
 
-### 👨‍🎓 Student Management
+### 1. Clone the repository
 
-* Add student
-* View all students
-* Delete student
-
-### 🏠 Room Management
-
-* Add room
-* View all rooms
-
-### 🔄 Allocation System
-
-* Allocate student to room
-* Prevent over-capacity
-* Prevent duplicate allocation
-* Vacate student
-
----
-
-## 📡 API Endpoints
-
-### Student APIs
-
-| Method | Endpoint             | Description      |
-| ------ | -------------------- | ---------------- |
-| GET    | `/students`          | Get all students |
-| POST   | `/students`          | Add student      |
-| DELETE | `/students/{id}`     | Delete student   |
-| POST   | `/students/allocate` | Allocate room    |
-| POST   | `/students/vacate`   | Vacate room      |
-
-### Room APIs
-
-| Method | Endpoint | Description   |
-| ------ | -------- | ------------- |
-| GET    | `/rooms` | Get all rooms |
-| POST   | `/rooms` | Add room      |
-
----
-
-## 📄 API Documentation (Swagger)
-
-👉 Open in browser:
-
-```
-http://localhost:8080/swagger-ui/index.html
+```bash
+git clone https://github.com/your-username/hostel-management-system.git
 ```
 
-* Interactive API testing
-* Request/response preview
-* No need for Postman
+### 2. Configure database
 
----
+Update `application.properties`:
 
-## ▶️ How to Run
-
-1. Clone the repository
-
-```
-git clone https://github.com/aritraguha07-sudo/hostelweb.git
-```
-
-2. Open in IntelliJ IDEA
-
-3. Configure MySQL in `application.properties`:
-
-```
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/hostel_db
 spring.datasource.username=root
-spring.datasource.password=S1234
+spring.datasource.password=your_password
 ```
 
-4. Run the application
+### 3. Run the project
+
+Run the Spring Boot application.
 
 ---
 
-## 🧪 Sample Request
+## 🌐 API Endpoints
 
-### Add Student
+* `GET /students` → Get all students
 
-```json
-{
-  "name": "Aritra",
-  "admissionYear": 2023,
-  "roomNo": 0,
-  "dept": "CSE"
-}
-```
+* `POST /students` → Add student
 
----
+* `DELETE /students/{id}` → Delete student
 
-## 🔥 Key Concepts Used
+* `GET /rooms` → Get all rooms
 
-* REST API design
-* Spring Boot architecture
-* JPA (ORM)
-* Repository pattern
-* MySQL database integration
-* Swagger API documentation
+* `POST /rooms` → Add room
+
+* `POST /students/allocate` → Allocate room
 
 ---
 
-## 🚀 Future Improvements
+## 📸 UI
 
-* Authentication (Login/Register)
-* JWT Security
-* Frontend (React)
-* Admin dashboard
+Dashboard-style frontend with sidebar navigation and card-based layout for managing students and rooms.
 
 ---
 
-## 👤 Author
+## 👨‍💻 Author
 
-**Aritra Guha**
-
----
-
-## ⭐ If you like this project, give it a star!
+Aritra Guha
