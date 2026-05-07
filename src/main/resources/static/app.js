@@ -1,5 +1,5 @@
 // ================== CONFIG ==================
-const API = "http://localhost:8080";
+const API = "https://hostel-management-system-4-223l.onrender.com";
 
 // ================== BASIC API ==================
 async function GET(path) {

@@ -7,10 +7,10 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int id;
+    private Integer id;
     private String name;
-    private int admissionYear;
-    private int roomNo;
+    private Integer admissionYear;
+    private Integer roomNo;
     private String dept;
 
     public Student() {
