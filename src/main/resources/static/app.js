@@ -1,160 +1,147 @@
-// ================== CONFIG ==================
-const API = "https://hostel-management-system-4-223l.onrender.com";
+// ====================== STUDENTS ======================
 
-// ================== BASIC API ==================
-async function GET(path) {
-  const res = await fetch(API + path);
-  if (!res.ok) throw new Error("GET failed");
-  return res.json();
+function getStudents() {
+    return JSON.parse(localStorage.getItem("students")) || [];
 }
 
-async function POST(path, body) {
-  const res = await fetch(API + path, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!res.ok) throw new Error("POST failed");
-  return res.json().catch(() => null);
+function saveStudents(students) {
+    localStorage.setItem("students", JSON.stringify(students));
 }
 
-async function DELETE_REQ(path) {
-  const res = await fetch(API + path, {
-    method: "DELETE"
-  });
+function addStudentSimple() {
 
-  if (!res.ok) throw new Error("DELETE failed");
-}
+    const name = document.getElementById("name").value;
+    const year = document.getElementById("year").value;
+    const dept = document.getElementById("dept").value;
 
-// ================== STUDENTS ==================
-async function addStudentSimple() {
+    if (!name) {
+        alert("Enter name");
+        return;
+    }
 
-  const student = {
-    name: document.getElementById("name").value,
-    admissionYear: parseInt(document.getElementById("year").value),
-    roomNo: 0,
-    dept: document.getElementById("dept").value
-  };
+    const students = getStudents();
 
-  if (!student.name) {
-    alert("Name required");
-    return;
-  }
+    students.push({
+        id: Date.now(),
+        name,
+        admissionYear: year,
+        dept,
+        roomNo: 0
+    });
 
-  try {
-    await POST("/students", student);
+    saveStudents(students);
+
+    document.getElementById("name").value = "";
+    document.getElementById("year").value = "";
+    document.getElementById("dept").value = "";
+
     loadStudents();
-  } catch (e) {
-    alert("Error adding student");
-  }
 }
 
-async function loadStudents() {
-  try {
-    const students = await GET("/students");
+function loadStudents() {
 
     const container = document.getElementById("studentsList");
     if (!container) return;
 
+    const students = getStudents();
+
+    if (students.length === 0) {
+        container.innerHTML = "<p>No students added yet.</p>";
+        return;
+    }
+
     container.innerHTML = students.map(s => `
-      <div class="card">
-        <p><b>ID:</b> ${s.id}</p>
-        <p><b>Name:</b> ${s.name}</p>
-        <p>${s.dept} | Year: ${s.admissionYear}</p>
-        <p><b>Room:</b> ${s.roomNo}</p>
+        <div class="card">
+            <p><b>ID:</b> ${s.id}</p>
+            <p><b>Name:</b> ${s.name}</p>
+            <p><b>Department:</b> ${s.dept}</p>
+            <p><b>Year:</b> ${s.admissionYear}</p>
+            <p><b>Room:</b> ${s.roomNo}</p>
 
-        <button onclick="deleteStudent(${s.id})">Delete</button>
-      </div>
+            <button onclick="deleteStudent(${s.id})">
+                Delete
+            </button>
+        </div>
     `).join("");
-
-  } catch (e) {
-    console.error(e);
-  }
 }
 
-async function deleteStudent(id) {
-  if (!confirm("Delete student?")) return;
+function deleteStudent(id) {
 
-  try {
-    await DELETE_REQ("/students/" + id);
+    let students = getStudents();
+
+    students = students.filter(s => s.id !== id);
+
+    saveStudents(students);
+
     loadStudents();
-  } catch (e) {
-    alert("Delete failed");
-  }
 }
 
-// ================== ROOMS ==================
-let allRooms = [];
+// ====================== ROOMS ======================
 
-async function loadRooms() {
-  try {
-    const rooms = await GET("/rooms");
-    allRooms = rooms;
-    displayRooms(rooms);
-  } catch (e) {
-    console.error(e);
-  }
+function getRooms() {
+    return JSON.parse(localStorage.getItem("rooms")) || [];
 }
 
-function displayRooms(rooms) {
-  const container = document.getElementById("roomList");
-  if (!container) return;
-
-  container.innerHTML = rooms.map(r => {
-    const isFull = r.occupied >= r.capacity;
-
-    return `
-      <div class="card">
-        <h3>Room ${r.roomNo}</h3>
-        <p>${r.occupied}/${r.capacity}</p>
-        <p style="color:${isFull ? '#e74c3c' : '#2ecc71'}">
-          ${isFull ? "Full" : "Available"}
-        </p>
-      </div>
-    `;
-  }).join("");
+function saveRooms(rooms) {
+    localStorage.setItem("rooms", JSON.stringify(rooms));
 }
 
-async function addRoom() {
-  const room = {
-    roomNo: parseInt(document.getElementById("roomNo").value),
-    capacity: parseInt(document.getElementById("capacity").value),
-    occupied: 0
-  };
+function addRoom() {
 
-  try {
-    await POST("/rooms", room);
-    loadRooms();
-  } catch (e) {
-    alert("Error adding room");
-  }
-}
+    const roomNo = document.getElementById("roomNo").value;
+    const capacity = document.getElementById("capacity").value;
 
-// ================== ALLOCATION ==================
-async function allocateStudent() {
+    if (!roomNo || !capacity) {
+        alert("Fill all fields");
+        return;
+    }
 
-  const studentId = document.getElementById("studentId").value;
-  const roomNo = document.getElementById("roomNo").value;
+    const rooms = getRooms();
 
-  try {
-    const res = await fetch(`${API}/students/allocate?studentId=${studentId}&roomNo=${roomNo}`, {
-      method: "POST"
+    rooms.push({
+        roomNo,
+        capacity,
+        occupied: 0
     });
 
-    if (!res.ok) throw new Error();
+    saveRooms(rooms);
 
-    alert("Allocated successfully");
+    document.getElementById("roomNo").value = "";
+    document.getElementById("capacity").value = "";
 
-  } catch (e) {
-    alert("Allocation failed");
-  }
+    loadRooms();
 }
 
-// ================== AUTO LOAD ==================
+function loadRooms() {
+
+    const container = document.getElementById("roomList");
+    if (!container) return;
+
+    const rooms = getRooms();
+
+    if (rooms.length === 0) {
+        container.innerHTML = "<p>No rooms added yet.</p>";
+        return;
+    }
+
+    container.innerHTML = rooms.map(r => `
+        <div class="card">
+            <h3>Room ${r.roomNo}</h3>
+            <p>Capacity: ${r.capacity}</p>
+            <p>Occupied: ${r.occupied}</p>
+        </div>
+    `).join("");
+}
+
+// ====================== PAGE LOAD ======================
+
 window.onload = () => {
-  if (document.getElementById("studentsList")) loadStudents();
-  if (document.getElementById("roomList")) loadRooms();
+
+    if (document.getElementById("studentsList")) {
+        loadStudents();
+    }
+
+    if (document.getElementById("roomList")) {
+        loadRooms();
+    }
 };
