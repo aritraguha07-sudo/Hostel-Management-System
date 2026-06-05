@@ -1,20 +1,25 @@
 package com.hostel.hostelweb.model;
+
 import jakarta.persistence.*;
 
 @Entity
 public class Room {
- @Id
+
+    @Id
     private int roomNo;
+
     private int capacity;
     private int occupied;
 
-    public Room() {}
+    public Room() {
+    }
 
     public Room(int roomNo, int capacity, int occupied) {
         this.roomNo = roomNo;
         this.capacity = capacity;
         this.occupied = occupied;
     }
+
     public int getRoomNo() {
         return roomNo;
     }

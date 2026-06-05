@@ -1,13 +1,14 @@
 package com.hostel.hostelweb.model;
+
 import jakarta.persistence.*;
 
 @Entity
-
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
+
     private String name;
     private Integer admissionYear;
     private Integer roomNo;
@@ -16,35 +17,34 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, int admissionYear, int roomNo, String dept) {
+    public Student(String name, Integer admissionYear, Integer roomNo, String dept) {
         this.name = name;
         this.admissionYear = admissionYear;
         this.roomNo = roomNo;
         this.dept = dept;
     }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getAdmissionYear() {
+    public Integer getAdmissionYear() {
         return admissionYear;
     }
 
-    public void setAdmissionYear(int admissionYear) {
+    public void setAdmissionYear(Integer admissionYear) {
         this.admissionYear = admissionYear;
     }
 
-    public int getRoomNo() {
+    public Integer getRoomNo() {
         return roomNo;
     }
 
-    public void setRoomNo(int roomNo) {
+    public void setRoomNo(Integer roomNo) {
         this.roomNo = roomNo;
     }
 

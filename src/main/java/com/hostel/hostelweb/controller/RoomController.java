@@ -26,7 +26,7 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<String> addRoom(@RequestBody Room room) {
         try {
-            Room savedRoom = hostelService.addRoom(room);
+            hostelService.addRoom(room);
             return ResponseEntity.status(201).body("Room added successfully");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

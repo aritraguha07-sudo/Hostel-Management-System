@@ -53,15 +53,22 @@ public class HostelService {
     }
 
 
-
     public boolean allocateStudentToRoom(int studentId, int roomNo) {
 
         Student student = studentRepository.findById(studentId).orElse(null);
         Room room = roomRepository.findById(roomNo).orElse(null);
 
-        if (student == null || room == null) return false;
-        if (student.getRoomNo() != 0) return false;
-        if (room.isFull()) return false;
+        if (student == null || room == null) {
+            return false;
+        }
+
+        if (student.getRoomNo() != 0) {
+            return false;
+        }
+
+        if (room.isFull()) {
+            return false;
+        }
 
         room.increase();
         student.setRoomNo(roomNo);
@@ -72,18 +79,27 @@ public class HostelService {
         return true;
     }
 
+
+
     public boolean vacateStudent(int studentId) {
 
         Student student = studentRepository.findById(studentId).orElse(null);
 
-        if (student == null) return false;
+        if (student == null) {
+            return false;
+        }
 
         int roomNo = student.getRoomNo();
-        if (roomNo == 0) return false;
+
+        if (roomNo == 0) {
+            return false;
+        }
 
         Room room = roomRepository.findById(roomNo).orElse(null);
 
-        if (room == null) return false;
+        if (room == null) {
+            return false;
+        }
 
         room.decrease();
         student.setRoomNo(0);
@@ -97,3 +113,4 @@ public class HostelService {
         return roomRepository.findAll();
     }
 }
+
